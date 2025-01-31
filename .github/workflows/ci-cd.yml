@@ -19,11 +19,11 @@ jobs:
           set -euxo pipefail
           for tag in latest 9 9.5 r9.5; do
             podman tag localhost/calcite ghcr.io/calciteauthors/calcite:${tag}
-            podman push ghcr.io/calciteauthors/calcite:${tag}
+            podman push ghcr.io/calciteauthors/calcite:${tag} --compression-format=zstd:chunked
           done
   build_and_upload_iso:
     name: Build & upload ISO
-    #needs: build_and_push_container
+    needs: build_and_push_container
     runs-on: ubuntu-24.04
     container: fedora:41
     steps:

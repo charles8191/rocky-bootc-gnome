@@ -1,8 +1,8 @@
 FROM ghcr.io/charles8191/rocky-bootc:r9.5
 RUN set -euxo pipefail && \
-    mkdir -m 0700 -p /var/roothome && \
+    (cd /etc/skel && tar cf - .) | (cd /root && tar xvf -) \
     ln -sf /run /var/run && \
-    dnf install -x cockpit,kmod-kvdo,PackageKit,PackageKit-command-not-found,vdo -y \
+    dnf install -x cockpit,kmod-kvdo,PackageKit,PackageKit-command-not-found,rootfiles,vdo -y \
       alsa-sof-firmware \
       @base \
       @base-x \

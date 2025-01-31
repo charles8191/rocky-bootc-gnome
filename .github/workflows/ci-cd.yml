@@ -31,7 +31,7 @@ jobs:
       - name: Install dependencies
         run: dnf install -y --allowerasing lorax util-linux skopeo curl
       - name: Download container
-        run: skopeo copy docker://ghcr.io/calciteauthors/calcite oci:container
+        run: skopeo copy docker://ghcr.io/calciteauthors/calcite:latest oci:container
       - name: Download Rocky Linux
         run: curl -Ls -o rocky.iso https://nyc.mirrors.clouvider.net/rocky/9/BaseOS/x86_64/os/images/boot.iso
       - name: Run mkksiso

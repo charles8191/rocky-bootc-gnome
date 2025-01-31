@@ -13,6 +13,7 @@ RUN set -euxo pipefail && \
       @guest-desktop-agents \
       gnome-tweaks \
       @hardware-support \
+      @networkmanager-submodules \
       @print-client && \
     dnf remove -y console-login-helper-messages{,profile} && \
     systemctl set-default graphical.target && \

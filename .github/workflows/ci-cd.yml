@@ -1,0 +1,23 @@
+name: CI/CD
+on:
+  push:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 4 * * *'
+jobs:
+  build_and_push:
+    name: Build & push
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Login
+        run: echo ${{secrets.GITHUB_TOKEN}} | podman login -u ${{github.actor}} --password-stdin ghcr.io
+      - name: Build
+        run: podman build -t localhost/calcite .
+      - name: Tag & push
+        run: |
+          set -x
+          for tag in latest 9 9.5 r9.5; do
+            podman tag localhost/calcite ghcr.io/calciteauthors/calcite:${tag}
+            podman push ghcr.io/calciteauthors/calcite:${tag}
+          done

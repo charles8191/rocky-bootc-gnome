@@ -1,4 +1,4 @@
-FROM ghcr.io/charles8191/rocky-bootc:r9.5
+FROM ghcr.io/charles8191/rocky-bootc:r9
 RUN set -euxo pipefail && \
     mkdir -m 0700 -p /var/roothome && \
     ln -sf /run /var/run && \

@@ -17,7 +17,7 @@ jobs:
       - name: Tag & push
         run: |
           set -euxo pipefail
-          for tag in latest 9 9.5 r9.5; do
+          for tag in latest 9 r9; do
             podman tag localhost/calcite ghcr.io/calciteauthors/calcite:${tag}
             podman push ghcr.io/calciteauthors/calcite:${tag}
           done

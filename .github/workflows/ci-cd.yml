@@ -5,8 +5,8 @@ on:
   schedule:
     - cron: '0 4 * * *'
 jobs:
-  build_and_push:
-    name: Build & push
+  build_and_push_container:
+    name: Build & push container
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
@@ -21,3 +21,22 @@ jobs:
             podman tag localhost/calcite ghcr.io/calciteauthors/calcite:${tag}
             podman push ghcr.io/calciteauthors/calcite:${tag}
           done
+  build_and_upload_iso:
+    name: Build & upload ISO
+    needs: build_and_push_container
+    runs-on: ubuntu-24.04
+    container: fedora:41
+    steps:
+      - name: Install dependencies
+        run: dnf install lorax util-linux -y
+      - name: Download container
+        run: skopeo copy docker://ghcr.io/calciteauthors/calcite oci:container
+      - name: Download Rocky Linux
+        run: curl -Ls -o rocky.iso https://nyc.mirrors.clouvider.net/rocky/9/BaseOS/x86_64/os/images/boot.iso
+      - name: Run mkksiso
+        run: mkksiso -a container ks.cfg rocky.iso calcite.iso
+      - uses: actions/upload-artifact@v4
+        name: Upload
+        with:
+          name: iso
+          path: calcite.iso

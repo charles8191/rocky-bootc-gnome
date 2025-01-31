@@ -7,4 +7,4 @@ Calcite is a simple base image, à la [Silverblue](https://quay.io/fedora/fedora
 
 ## ISO
 
-An ISO is available as a build artifact.
+An ISO is available as a GitHub Actions workflow build artifact.

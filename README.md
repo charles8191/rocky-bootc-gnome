@@ -5,6 +5,10 @@
 
 Calcite is a simple Rocky-based base image, à la [Silverblue](https://quay.io/fedora/fedora-silverblue). You can use it for making your own operating system or just add your applications, or even use it as is if you are adventurous.
 
+## Image
+
+The image is published as a GitHub Package.
+
 ## ISO
 
 An ISO is available as a GitHub Actions workflow build artifact.

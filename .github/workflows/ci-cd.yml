@@ -27,8 +27,9 @@ jobs:
     runs-on: ubuntu-24.04
     container: fedora:41
     steps:
+      - uses: actions/checkout@v4
       - name: Install dependencies
-        run: dnf install lorax util-linux skopeo curl-minimal -y
+        run: dnf install -y --allowerasing lorax util-linux skopeo curl
       - name: Download container
         run: skopeo copy docker://ghcr.io/calciteauthors/calcite oci:container
       - name: Download Rocky Linux

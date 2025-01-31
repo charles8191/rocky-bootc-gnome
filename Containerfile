@@ -1,6 +1,6 @@
 FROM ghcr.io/charles8191/rocky-bootc:r9.5
 RUN set -euxo pipefail && \
-    (cd /etc/skel && tar cf - .) | (cd /root && tar xvf -) \
+    (cd /etc/skel && tar cf - .) | (cd /root && tar xvf -) && \
     ln -sf /run /var/run && \
     dnf install -x cockpit,kmod-kvdo,PackageKit,PackageKit-command-not-found,rootfiles,vdo -y \
       alsa-sof-firmware \

@@ -23,12 +23,12 @@ jobs:
           done
   build_and_upload_iso:
     name: Build & upload ISO
-    needs: build_and_push_container
+    #needs: build_and_push_container
     runs-on: ubuntu-24.04
     container: fedora:41
     steps:
       - name: Install dependencies
-        run: dnf install lorax util-linux -y
+        run: dnf install lorax util-linux skopeo curl-minimal -y
       - name: Download container
         run: skopeo copy docker://ghcr.io/calciteauthors/calcite oci:container
       - name: Download Rocky Linux

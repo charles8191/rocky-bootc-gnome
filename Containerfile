@@ -2,6 +2,8 @@ FROM ghcr.io/charles8191/rocky-bootc:r9
 RUN set -euxo pipefail && \
     mkdir -m 0700 -p /var/roothome && \
     ln -sf /run /var/run && \
+    sed -i 's,ExecStart=/usr/bin/bootc update --apply --quiet,ExecStart=/usr/bin/bootc update --quiet,g' \
+      /usr/lib/systemd/system/bootc-fetch-apply-updates.service && \
     dnf install -x cockpit,kmod-kvdo,PackageKit,PackageKit-command-not-found,vdo -y \
       alsa-sof-firmware \
       @base \

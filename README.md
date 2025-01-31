@@ -1,5 +1,7 @@
 # Calcite
 
+[![CI/CD](https://github.com/CalciteAuthors/calcite/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/CalciteAuthors/calcite/actions/workflows/ci-cd.yml)
+
 > [!NOTE]
 > This is a reincarnation of the original Calcite project. See [here](https://github.com/CalciteAuthors/ancient-history) for legacy Calcite.
 

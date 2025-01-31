@@ -4,6 +4,7 @@ RUN set -euxo pipefail && \
     ln -sf /run /var/run && \
     sed -i 's,ExecStart=/usr/bin/bootc update --apply --quiet,ExecStart=/usr/bin/bootc update --quiet,g' \
       /usr/lib/systemd/system/bootc-fetch-apply-updates.service && \
+    echo 'KERNEL=="loop0", ENV{UDISKS_IGNORE}="1"' > /etc/udev/rules.d/10-bootc.rules && \
     dnf install -x cockpit,kmod-kvdo,PackageKit,PackageKit-command-not-found,vdo -y \
       alsa-sof-firmware \
       @base \

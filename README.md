@@ -5,7 +5,17 @@
 > [!NOTE]
 > This is a reincarnation of the original Calcite project. See [here](https://github.com/CalciteAuthors/ancient-history) for legacy Calcite.
 
-Calcite is a simple Rocky-based base image, à la [Silverblue](https://quay.io/fedora/fedora-silverblue). You can use it for making your own operating system or just add your applications, or even use it as is if you are adventurous.
+Calcite is a simple AlmaLinux-based base image, à la [Silverblue](https://quay.io/fedora/fedora-silverblue). You can use it for making your own operating system or just add your applications, or even use it as is if you are adventurous.
+
+## Goals
+
+- Be a usable base image
+- Be reasonably usable as is
+
+## Out of scope
+
+- Branding
+- Major UI/UX tweaks
 
 ## Image
 

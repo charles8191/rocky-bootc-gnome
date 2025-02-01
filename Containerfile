@@ -1,4 +1,4 @@
-FROM ghcr.io/charles8191/rocky-bootc:r9
+FROM quay.io/almalinuxorg/almalinux-bootc:9.5
 RUN set -euxo pipefail && \
     mkdir -m 0700 -p /var/roothome && \
     ln -sf /run /var/run && \

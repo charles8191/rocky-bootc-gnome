@@ -16,6 +16,7 @@ RUN set -euxo pipefail && \
       @guest-desktop-agents \
       gnome-tweaks \
       @hardware-support \
+      man-db
       @networkmanager-submodules \
       @print-client && \
     dnf remove -y console-login-helper-messages{,profile} && \

@@ -15,7 +15,7 @@ jobs:
       - name: Build
         run: podman build -t localhost/calcite .
       - name: Tag & push
-        if: ${{ always() && format('refs/heads/{0}', github.event.repository.default_branch) == github.ref }}
+        if: ${{ format('refs/heads/{0}', github.event.repository.default_branch) == github.ref }}
         run: |
           set -euxo pipefail
           for tag in latest r9; do
@@ -23,7 +23,7 @@ jobs:
             podman push ghcr.io/calciteauthors/calcite:${tag}
           done
   build_and_upload_iso:
-    if: ${{ always() && format('refs/heads/{0}', github.event.repository.default_branch) == github.ref }}
+    if: ${{ format('refs/heads/{0}', github.event.repository.default_branch) == github.ref }}
     name: Build & upload ISO
     needs: build_and_push_container
     runs-on: ubuntu-24.04

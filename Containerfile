@@ -19,6 +19,8 @@ RUN set -euxo pipefail && \
       @networkmanager-submodules \
       @print-client && \
     dnf remove -y console-login-helper-messages{,profile} && \
+    mkdir -p /etc/flatpak/remotes.d && \
+    curl -o /etc/flatpak/remotes.d/flathub.flatpakrepo https://dl.flathub.org/repo/flathub.flatpakrepo && \
     systemctl set-default graphical.target && \
     kver=$(cd /usr/lib/modules && echo * | awk '{print $1}') && \
     dracut -vf /usr/lib/modules/$kver/initramfs.img $kver && \

@@ -34,7 +34,7 @@ dnf install -x cockpit,kmod-kvdo,PackageKit,PackageKit-command-not-found,vdo -y 
   @guest-desktop-agents \
   gnome-tweaks \
   @hardware-support \
-  man-db
+  man-db \
   @networkmanager-submodules \
   @print-client
 

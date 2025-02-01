@@ -3,7 +3,7 @@ on:
   push:
   workflow_dispatch:
   schedule:
-    - cron: '0 4 * * *'
+    - cron: '25 10 * * *'
 jobs:
   build_and_push_container:
     name: Build & push container

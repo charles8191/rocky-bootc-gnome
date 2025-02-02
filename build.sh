@@ -50,6 +50,11 @@ curl -o /etc/flatpak/remotes.d/flathub.flatpakrepo https://dl.flathub.org/repo/f
 ## Make GDM and everything needed appear
 systemctl set-default graphical.target
 
+
+## Firewall
+dnf install -y firewalld
+systemctl enable firewalld
+
 # Dracut
 
 ## Rebuild initramfs. Largely fixes Plymouth.

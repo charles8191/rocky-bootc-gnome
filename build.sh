@@ -47,13 +47,12 @@ dnf remove -y console-login-helper-messages{,profile}
 mkdir -p /etc/flatpak/remotes.d
 curl -o /etc/flatpak/remotes.d/flathub.flatpakrepo https://dl.flathub.org/repo/flathub.flatpakrepo
 
-## Make GDM and everything needed appear
-systemctl set-default graphical.target
-
-
 ## Firewall
 dnf install -y firewalld
 systemctl enable firewalld
+
+## Make GDM and everything needed appear
+systemctl set-default graphical.target
 
 # Dracut
 

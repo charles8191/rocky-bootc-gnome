@@ -27,6 +27,7 @@ dnf install -x cockpit,kmod-kvdo,PackageKit,PackageKit-command-not-found,vdo -y 
   alsa-sof-firmware \
   @base \
   @base-x \
+  containernetworking-plugins \
   firefox \
   @fonts \
   gdm \

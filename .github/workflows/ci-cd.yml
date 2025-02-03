@@ -13,17 +13,30 @@ jobs:
       - name: Login
         run: echo ${{secrets.GITHUB_TOKEN}} | podman login -u ${{github.actor}} --password-stdin ghcr.io
       - name: Build
-        run: podman build -t localhost/calcite .
-      - name: Tag & push
-        if: ${{ format('refs/heads/{0}', github.event.repository.default_branch) == github.ref }}
+        run: sudo podman build -t localhost/calcite .
+      - name: Run Rechunk
+        id: rechunk
+        uses: hhd-dev/rechunk@v1.1.3
+        with:
+          ref: "localhost/calcite:latest"
+          skip_compression: true
+          labels: |
+            containers.bootc=1
+            ostree.bootable=true
+      - name: Remove old, unchunked image
+        run: sudo podman image rm -f localhost/calcite
+      - name: Pull chunked image, tag & push
+        if: ${{format('refs/heads/{0}', github.event.repository.default_branch) == github.ref}}
         run: |
           set -euxo pipefail
+          digest=$(podman pull ${{steps.rechunk.outputs.ref}})
+          sudo rm -rf ${{steps.rechunk.outputs.output}}
           for tag in latest a9 9 a9.5 9.5; do
-            podman tag localhost/calcite ghcr.io/calciteauthors/calcite:${tag}
+            podman tag $digest ghcr.io/calciteauthors/calcite:${tag}
             podman push ghcr.io/calciteauthors/calcite:${tag}
           done
   build_and_upload_iso:
-    if: ${{ format('refs/heads/{0}', github.event.repository.default_branch) == github.ref }}
+    if: ${{format('refs/heads/{0}', github.event.repository.default_branch) == github.ref}}
     name: Build & upload ISO
     needs: build_and_push_container
     runs-on: ubuntu-24.04

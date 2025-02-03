@@ -11,7 +11,7 @@ Calcite is a simple AlmaLinux-based base image, à la [Silverblue](https://quay.
 
 - Be a usable base image
 - Be reasonably usable as is
-- Do as much as possible with the default repos
+- Do as much as possible with the default repos (excluding EPEL as well)
 
 ## Out of scope
 

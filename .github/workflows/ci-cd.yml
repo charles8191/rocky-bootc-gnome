@@ -4,6 +4,8 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '05 11 * * *'
+env:
+  container_tags: latest a9 9 a9.5 9.5 
 jobs:
   build_and_push_container:
     name: Build & push container
@@ -31,7 +33,7 @@ jobs:
           set -euxo pipefail
           digest=$(podman pull ${{steps.rechunk.outputs.ref}})
           sudo rm -rf ${{steps.rechunk.outputs.location}}
-          for tag in ; do
+          for tag in $container_tags; do
             podman tag $digest ghcr.io/calciteauthors/calcite:${tag}
             podman push ghcr.io/calciteauthors/calcite:${tag}
           done
@@ -42,7 +44,7 @@ jobs:
         if: ${{format('refs/heads/{0}', github.event.repository.default_branch) == github.ref}}
         run: |
           image="ghcr.io/calciteauthors/calcite"
-          for tag in latest a9 9 a9.5 9.5; do
+          for tag in $container_tags; do
             cosign sign -y --key env://COSIGN_PRIVATE_KEY ${image}:${tag}
           done
         env:

@@ -42,6 +42,9 @@ dnf install -x cockpit,kmod-kvdo,PackageKit,PackageKit-command-not-found,vdo -y 
 ## Remove terminal errors
 dnf remove -y console-login-helper-messages{,profile}
 
+## Add more DNF functionality
+dnf install -y dnf-plugins-core
+
 # System configuration
 
 ## Add Flathub

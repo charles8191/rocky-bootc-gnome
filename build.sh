@@ -69,8 +69,8 @@ dracut -vf /usr/lib/modules/$kver/initramfs.img $kver
 ## Clean DNF cache
 dnf clean all
 
-## Commit with ostree
-ostree container commit
-
 ## Lint with bootc
 bootc container lint
+
+## Commit with ostree
+ostree container commit
